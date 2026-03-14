@@ -939,12 +939,6 @@ export default function App() {
     setHoveredId(null);
   }, []);
 
-  const goMain = useCallback((id: number) => {
-    setSelId(id);
-    setViewMode("main");
-    setActiveAlt(null);
-    setGrown((g) => ({ ...g, [id]: true }));
-  }, []);
 
   const fil = useMemo(() => {
     let items = filter === "all" ? VETOES : VETOES.filter((v) => v.vetoedBy.includes(filter));
@@ -968,7 +962,29 @@ const totalW = useMemo(
     [fil, totalW]
   );
 
-  
+const goMain = useCallback(
+  (id: number) => {
+    setSelId(id);
+    setViewMode("main");
+    setActiveAlt(null);
+    setGrown((g) => ({ ...g, [id]: true }));
+
+    if (!scrollRef.current) return;
+
+    const found = laidOut.find((item) => item.veto.id === id);
+    if (!found) return;
+
+    const container = scrollRef.current;
+
+    container.scrollTo({
+      left: Math.max(0, found.branch.cx - container.clientWidth / 2),
+      top: Math.max(0, TRUNK_Y - 180),
+      behavior: "smooth",
+    });
+  },
+  [laidOut]
+);
+
   const maxImpact = Math.max(...fil.map((v) => v.impactScore));
   const totalH = TRUNK_Y + 70 + maxImpact * 12 + 260;
 
@@ -1091,9 +1107,14 @@ const cl = useCallback(
   return () => window.removeEventListener("resize", update);
 }, []);
 
-  useEffect(() => {
-    if (scrollRef.current) scrollRef.current.scrollTop = Math.max(0, TRUNK_Y - 180);
-  }, [filter, yearFilter]);
+useEffect(() => {
+  if (!scrollRef.current) return;
+
+  const container = scrollRef.current;
+
+  container.scrollTop = Math.max(0, TRUNK_Y - 300);
+  container.scrollLeft = 0;
+}, [filter, yearFilter, totalW]);
 
   useEffect(() => {
     const onKeyDown = (e: KeyboardEvent) => {
@@ -1192,7 +1213,8 @@ const cl = useCallback(
                 marginBottom: 2,
               }}
             >
-              GA Res 76/262 · Veto Initiative
+              Exploring veto explanations and imagined alternate futures.
+
             </div>
             <h1
               style={{
