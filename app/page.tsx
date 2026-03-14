@@ -24,343 +24,546 @@ type Veto = {
   altTimelines: [AltTimeline, AltTimeline];
   justification: string;
   draftSummary: string;
+  draftSymbol: string;
+  meetingRecord: string;
+  draftLink: string;
+  recordLink: string;
 };
 
 const VETOES: Veto[] = [
-  {
-    id: 1,
-    date: "2022-05-26",
-    topic: "DPRK sanctions",
-    vetoedBy: ["Russia", "China"],
-    impactScore: 3,
-    category: "Non-Proliferation",
-    whatHappened:
-      "No new sanctions. North Korea continued ICBM testing at record pace. Existing framework remained without enhanced enforcement.",
-    altTimelines: [
-      {
-        title: "Tighter net",
-        desc: "Enhanced sanctions slow DPRK procurement by 6–12 months. Pyongyang adapts, but the delay matters for regional deterrence.",
-        likelihood: "Low-Medium",
-      },
-      {
-        title: "Symbolic consensus",
-        desc: "Resolution passes but changes little. The real value: reaffirming the Council can still agree on non-proliferation.",
-        likelihood: "High",
-      },
-    ],
-    justification: "Russia: sanctions exhausted. China: dialogue over pressure.",
-    draftSummary:
-      "Strengthen DPRK sanctions after ICBM launches; condemn missile tests.",
-  },
-  {
-    id: 2,
-    date: "2022-07-08",
-    topic: "Syria cross-border aid",
-    vetoedBy: ["Russia"],
-    impactScore: 7,
-    category: "Humanitarian",
-    whatHappened:
-      "Aid disrupted for weeks. Compromise restored mechanism for 6 months instead of 12. Four million people lost planning certainty.",
-    altTimelines: [
-      {
-        title: "Stable pipeline",
-        desc: "12-month mandate lets agencies invest in health and education infrastructure in Idlib beyond survival mode.",
-        likelihood: "High",
-      },
-      {
-        title: "Leverage shift",
-        desc: "Stable route reduces Damascus's control over aid. Opposition areas develop parallel governance.",
-        likelihood: "Low",
-      },
-    ],
-    justification:
-      "Russia: aid should go through Damascus. Cross-border delivery violates sovereignty.",
-    draftSummary:
-      "Extend cross-border humanitarian aid to Syria via Bab al-Hawa for 12 months.",
-  },
-  {
-    id: 3,
-    date: "2022-09-30",
-    topic: "Ukraine referenda",
-    vetoedBy: ["Russia"],
-    impactScore: 5,
-    category: "Territorial Integrity",
-    whatHappened:
-      "GA passed non-binding version (143 votes). Russia proceeded with annexation. No binding SC determination on legal status.",
-    altTimelines: [
-      {
-        title: "Binding condemnation",
-        desc: "SC resolution creates stronger non-recognition basis. Banking, insurance, shipping compliance tightens around annexed territories.",
-        likelihood: "Medium",
-      },
-      {
-        title: "Enforcement gap persists",
-        desc: "Passes but enforcement against nuclear P5 member impossible. Gap between this and the GA resolution may be smaller than expected.",
-        likelihood: "High",
-      },
-    ],
-    justification:
-      "Russia: interference in internal affairs; referenda reflect self-determination.",
-    draftSummary:
-      "Condemn referenda as invalid; reject annexation of four Ukrainian regions.",
-  },
-  {
-    id: 4,
-    date: "2023-03-20",
-    topic: "Mali sanctions",
-    vetoedBy: ["Russia"],
-    impactScore: 6,
-    category: "Sanctions",
-    whatHappened:
-      "Monitoring ended. UN lost primary tool for tracking arms flows in Mali. Coincided with Wagner Group expansion in the Sahel.",
-    altTimelines: [
-      {
-        title: "Wagner spotlight",
-        desc: "Panel continues documenting arms flows, creating friction around Russia's Sahel footprint. Reports become leverage for West African states.",
-        likelihood: "Medium",
-      },
-      {
-        title: "Accountability anchor",
-        desc: "Documentation creates evidentiary base for future proceedings. Without it, the factual record has an unfillable gap.",
-        likelihood: "Medium-High",
-      },
-    ],
-    justification: "Russia: sanctions inappropriate; Panel of Experts biased.",
-    draftSummary:
-      "Renew Mali sanctions regime and Panel of Experts monitoring arms and rights.",
-  },
-  {
-    id: 5,
-    date: "2023-07-11",
-    topic: "Syria aid renewal",
-    vetoedBy: ["Russia"],
-    impactScore: 6,
-    category: "Humanitarian",
-    whatHappened:
-      "Another disruption. Shorter compromise reached. Each brinkmanship cycle degrades agency capacity and costs lives during gaps.",
-    altTimelines: [
-      {
-        title: "Breaking the cycle",
-        desc: "Clean renewal signals permanence. Agencies invest in infrastructure, not crisis management. Health outcomes improve measurably.",
-        likelihood: "High",
-      },
-      {
-        title: "Normalization",
-        desc: "Mechanism becomes accepted practice. Debate shifts from 'should it exist' to 'how to improve it.'",
-        likelihood: "Medium",
-      },
-    ],
-    justification: "Russia: aid must go through Damascus.",
-    draftSummary:
-      "Extend cross-border aid into northwest Syria for 9 months.",
-  },
-  {
-    id: 6,
-    date: "2023-10-18",
-    topic: "Gaza humanitarian pause",
-    vetoedBy: ["United States"],
-    impactScore: 8,
-    category: "Ceasefire",
-    whatHappened:
-      "No pause mandated. Ground offensive intensified. Aid access increasingly restricted. Council paralyzed on Gaza for months.",
-    altTimelines: [
-      {
-        title: "Early norms set",
-        desc: "11 days after Oct 7, SC-mandated pause establishes rules of engagement. Aid corridors open before the offensive peaks. War trajectory inflected.",
-        likelihood: "Medium",
-      },
-      {
-        title: "Ignored but on record",
-        desc: "Resolution passes, is not enforced—like many Israel-Palestine SC texts. But creates legal reference point for future proceedings.",
-        likelihood: "Medium-High",
-      },
-    ],
-    justification:
-      "US: text didn't acknowledge Israel's right to self-defense.",
-    draftSummary:
-      "Humanitarian pauses in Gaza, hostage release, condemn violence against civilians.",
-  },
-  {
-    id: 7,
-    date: "2024-03-22",
-    topic: "Gaza ceasefire",
-    vetoedBy: ["United States"],
-    impactScore: 9,
-    category: "Ceasefire",
-    whatHappened:
-      "Vetoed. Days later Res. 2728 passed demanding Ramadan ceasefire—no enforcement. War continued through catastrophic conditions.",
-    altTimelines: [
-      {
-        title: "Binding demand",
-        desc: "Legal obligations on all parties. States providing military support face sharper legal exposure. Arms transfer debates intensify. ICJ references it.",
-        likelihood: "Medium",
-      },
-      {
-        title: "Thousands of lives",
-        desc: "Even partial implementation saves thousands, prevents worst famine, preserves hospital infrastructure. Reconstruction shortens by years.",
-        likelihood: "Low-Medium",
-      },
-    ],
-    justification:
-      "US: could jeopardize hostage negotiations; didn't condemn Hamas.",
-    draftSummary:
-      "Immediate ceasefire, unconditional hostage release, unhindered humanitarian access.",
-  },
-  {
-    id: 8,
-    date: "2024-03-28",
-    topic: "DPRK Panel of Experts",
-    vetoedBy: ["Russia"],
-    impactScore: 7,
-    category: "Non-Proliferation",
-    whatHappened:
-      "Panel terminated. Primary mechanism tracking DPRK sanctions evasion—including arms transfers to Russia—lost its institutional home.",
-    altTimelines: [
-      {
-        title: "Inconvenient reports",
-        desc: "Panel documents DPRK ammunition transfers to Russia for Ukraine. Reports become diplomatic ammunition. Moscow faces evidence it can't easily dismiss.",
-        likelihood: "High",
-      },
-      {
-        title: "Oversight norm holds",
-        desc: "Non-proliferation monitoring stays intact. Other panels aren't weakened by precedent. Message: can't dismantle oversight for producing unwelcome findings.",
-        likelihood: "Medium-High",
-      },
-    ],
-    justification:
-      "Russia: Panel became a political tool of Western states.",
-    draftSummary:
-      "Renew Panel of Experts monitoring DPRK sanctions implementation.",
-  },
-  {
-    id: 9,
-    date: "2024-04-18",
-    topic: "Palestine membership",
-    vetoedBy: ["United States"],
-    impactScore: 9,
-    category: "Statehood",
-    whatHappened:
-      "Membership blocked. Palestine kept non-member observer status. GA upgraded participatory rights, but full membership—with legal consequences—out of reach.",
-    altTimelines: [
-      {
-        title: "Full statehood",
-        desc: "Palestine accesses ICC, ICJ, all treaty bodies. Settlement legality justiciable in new forums. Diplomatic architecture fundamentally restructured.",
-        likelihood: "Medium",
-      },
-      {
-        title: "Negotiation reset",
-        desc: "Palestine enters talks as recognized state, not aspirant. US mediator role complicated—but arguably the disruption needed after decades of stalled talks.",
-        likelihood: "Low-Medium",
-      },
-    ],
-    justification: "US: statehood through negotiations, not UN vote.",
-    draftSummary:
-      "Recommend to GA that Palestine be admitted as full UN member.",
-  },
-  {
-    id: 10,
-    date: "2024-06-14",
-    topic: "Sudan ceasefire",
-    vetoedBy: ["Russia"],
-    impactScore: 8,
-    category: "Ceasefire",
-    whatHappened:
-      "No SC-backed ceasefire. Sudan's war deepened into one of the world's worst humanitarian crises. Millions displaced. Famine in multiple regions.",
-    altTimelines: [
-      {
-        title: "Backbone for AU",
-        desc: "SC resolution strengthens African-led mediation. AU mediators arrive with binding demand behind them. Neither SAF nor RSF can claim silence.",
-        likelihood: "Medium-High",
-      },
-      {
-        title: "Aid corridor mandate",
-        desc: "Humanitarian access provisions create legal framework. Blocking aid becomes documented violation, not gray area. Accountability base begins building.",
-        likelihood: "Medium",
-      },
-    ],
-    justification:
-      "Russia: text unbalanced; AU should lead mediation.",
-    draftSummary:
-      "Demand cessation of hostilities; protect civilians; humanitarian access.",
-  },
-  {
-    id: 11,
-    date: "2024-11-20",
-    topic: "Gaza ceasefire (E10)",
-    vetoedBy: ["United States"],
-    impactScore: 8,
-    category: "Ceasefire",
-    whatHappened:
-      "Vetoed despite unprecedented E10 unanimity. Gap between elected majority and P5 privilege starkly exposed.",
-    altTimelines: [
-      {
-        title: "E10 precedent",
-        desc: "First-ever collectively drafted E10 resolution passes. Elected members prove they can act as unified bloc. Political cost of future vetoes rises.",
-        likelihood: "Medium",
-      },
-      {
-        title: "Reform catalyst",
-        desc: "Adopted E10 resolution demonstrates Council can function around P5 obstruction. Becomes Exhibit A in veto reform debates.",
-        likelihood: "Low-Medium",
-      },
-    ],
-    justification:
-      "US: didn't address hostage talks or condemn Hamas.",
-    draftSummary:
-      "All 10 elected members demand permanent ceasefire, hostage release, aid access.",
-  },
-  {
-    id: 12,
-    date: "2025-01-14",
-    topic: "Space weapons",
-    vetoedBy: ["Russia"],
-    impactScore: 5,
-    category: "Non-Proliferation",
-    whatHappened:
-      "No reaffirmation of space non-weaponization norm. Militarization accelerated. Outer Space Treaty norms eroded through ambiguity.",
-    altTimelines: [
-      {
-        title: "Norm anchor",
-        desc: "SC resolution reinforces Outer Space Treaty. States contemplating orbital weapons face fresh binding reaffirmation raising political cost.",
-        likelihood: "Medium",
-      },
-      {
-        title: "Treaty momentum",
-        desc: "Call for negotiations creates institutional momentum. Working groups form. Process may take a decade but it begins.",
-        likelihood: "Low",
-      },
-    ],
-    justification:
-      "Russia: draft ignored its own comprehensive space treaty proposals.",
-    draftSummary:
-      "Reaffirm WMD prohibition in space; begin binding treaty negotiations.",
-  },
-  {
-    id: 13,
-    date: "2025-03-07",
-    topic: "Gaza ceasefire (2025)",
-    vetoedBy: ["United States"],
-    impactScore: 8,
-    category: "Ceasefire",
-    whatHappened:
-      "Another veto. Pattern of US Gaza vetoes became itself a focal point of reform debate. Council's paralysis on its most-discussed conflict became defining.",
-    altTimelines: [
-      {
-        title: "Cumulative weight",
-        desc: "Successive adopted resolutions create compounding pressure. Each makes the next harder to ignore. Quantity may produce quality in compliance.",
-        likelihood: "Medium",
-      },
-      {
-        title: "Credibility preserved",
-        desc: "Council demonstrates it can act on its most consequential crisis. Public trust in multilateral institutions stabilizes rather than cratering.",
-        likelihood: "Medium",
-      },
-    ],
-    justification:
-      "US: failed to condemn Hamas; didn't recognize Israel's security needs.",
-    draftSummary:
-      "Immediate ceasefire, hostage release, unimpeded humanitarian access.",
-  },
+
+{
+id:1,
+date:"2022-05-26",
+topic:"DPRK sanctions",
+vetoedBy:["China","Russia"],
+impactScore:3,
+category:"Non-Proliferation",
+draftSymbol:"S/2022/431",
+meetingRecord:"S/PV.9048",
+draftLink:"https://undocs.org/S/2022/431",
+recordLink:"https://undocs.org/S/PV.9048",
+whatHappened:"China and Russia vetoed new sanctions responding to DPRK ICBM launches, leaving the sanctions regime unchanged.",
+altTimelines:[
+{
+title:"Sanctions tighten",
+desc:"New restrictions slow DPRK procurement networks and missile development cycles.",
+likelihood:"Low-Medium"
+},
+{
+title:"Council unity restored",
+desc:"Adoption would have demonstrated continued consensus on non-proliferation despite geopolitical tensions.",
+likelihood:"Medium"
+}
+],
+justification:"China and Russia argued sanctions had reached their limit and dialogue should replace pressure.",
+draftSummary:"Strengthen DPRK sanctions following new ballistic missile launches."
+},
+
+{
+id:2,
+date:"2022-07-08",
+topic:"Syria cross-border aid",
+vetoedBy:["Russia"],
+impactScore:7,
+category:"Humanitarian",
+draftSymbol:"S/2022/538",
+meetingRecord:"S/PV.9087",
+draftLink:"https://undocs.org/S/2022/538",
+recordLink:"https://undocs.org/S/PV.9087",
+whatHappened:"Russia vetoed a 12-month renewal of cross-border aid into Syria, forcing a shorter compromise extension.",
+altTimelines:[
+{
+title:"Stable humanitarian pipeline",
+desc:"Aid agencies operate on predictable timelines and invest in longer-term infrastructure.",
+likelihood:"High"
+},
+{
+title:"Reduced leverage for Damascus",
+desc:"Direct cross-border aid limits the Syrian government's ability to control humanitarian access.",
+likelihood:"Medium"
+}
+],
+justification:"Russia argued humanitarian assistance should be coordinated through Damascus.",
+draftSummary:"Extend cross-border humanitarian aid deliveries into northwest Syria."
+},
+
+{
+id:3,
+date:"2022-09-30",
+topic:"Ukraine referenda",
+vetoedBy:["Russia"],
+impactScore:5,
+category:"Territorial Integrity",
+draftSymbol:"S/2022/720",
+meetingRecord:"S/PV.9143",
+draftLink:"https://undocs.org/S/2022/720",
+recordLink:"https://undocs.org/S/PV.9143",
+whatHappened:"Russia vetoed a resolution condemning referenda used to annex Ukrainian territories.",
+altTimelines:[
+{
+title:"Binding non-recognition",
+desc:"Council condemnation strengthens legal non-recognition of annexed regions.",
+likelihood:"Medium"
+},
+{
+title:"Limited impact",
+desc:"Even adopted, enforcement against a permanent member remains politically constrained.",
+likelihood:"High"
+}
+],
+justification:"Russia described the resolution as interference in self-determination processes.",
+draftSummary:"Condemn referenda conducted in occupied Ukrainian territories."
+},
+
+{
+id:4,
+date:"2023-07-11",
+topic:"Syria aid renewal",
+vetoedBy:["Russia"],
+impactScore:6,
+category:"Humanitarian",
+draftSymbol:"S/2023/506",
+meetingRecord:"S/PV.9371",
+draftLink:"https://undocs.org/S/2023/506",
+recordLink:"https://undocs.org/S/PV.9371",
+whatHappened:"Russia vetoed another renewal of the Syria cross-border humanitarian aid mechanism.",
+altTimelines:[
+{
+title:"Humanitarian continuity",
+desc:"Aid operations continue without disruption across northern Syria.",
+likelihood:"High"
+},
+{
+title:"Institutional normalization",
+desc:"The cross-border system becomes accepted long-term practice.",
+likelihood:"Medium"
+}
+],
+justification:"Russia insisted aid should be delivered through the Syrian government.",
+draftSummary:"Renew authorization for UN humanitarian aid delivery across the Syria border."
+},
+
+{
+id:5,
+date:"2023-08-30",
+topic:"Mali sanctions panel",
+vetoedBy:["Russia"],
+impactScore:6,
+category:"Sanctions",
+draftSymbol:"S/2023/638",
+meetingRecord:"S/PV.9408",
+draftLink:"https://undocs.org/S/2023/638",
+recordLink:"https://undocs.org/S/PV.9408",
+whatHappened:"Russia vetoed extending the UN sanctions monitoring panel for Mali.",
+altTimelines:[
+{
+title:"Monitoring continues",
+desc:"Investigations track arms flows and security actors in the Sahel.",
+likelihood:"Medium"
+},
+{
+title:"Accountability record",
+desc:"Panel reports provide evidence for future legal accountability.",
+likelihood:"Medium"
+}
+],
+justification:"Russia argued sanctions mechanisms were politically biased.",
+draftSummary:"Extend the Panel of Experts monitoring sanctions in Mali."
+},
+
+{
+id:6,
+date:"2023-10-18",
+topic:"Gaza humanitarian pause",
+vetoedBy:["United States"],
+impactScore:8,
+category:"Ceasefire",
+draftSymbol:"S/2023/773",
+meetingRecord:"S/PV.9442",
+draftLink:"https://undocs.org/S/2023/773",
+recordLink:"https://undocs.org/S/PV.9442",
+whatHappened:"The United States vetoed a draft calling for humanitarian pauses in Gaza.",
+altTimelines:[
+{
+title:"Early pause",
+desc:"A Council mandate slows escalation and enables early humanitarian corridors.",
+likelihood:"Medium"
+},
+{
+title:"Normative record",
+desc:"Even without enforcement the resolution becomes a key legal reference.",
+likelihood:"Medium"
+}
+],
+justification:"The United States said the resolution did not adequately recognize Israel's right to self-defense.",
+draftSummary:"Call for humanitarian pauses and civilian protection in Gaza."
+},
+
+{
+id:7,
+date:"2023-10-25",
+topic:"Gaza ceasefire draft",
+vetoedBy:["China","Russia"],
+impactScore:7,
+category:"Ceasefire",
+draftSymbol:"S/2023/792",
+meetingRecord:"S/PV.9453",
+draftLink:"https://undocs.org/S/2023/792",
+recordLink:"https://undocs.org/S/PV.9453",
+whatHappened:"China and Russia vetoed a US-backed Gaza resolution they argued was insufficient on ceasefire language.",
+altTimelines:[
+{
+title:"Ceasefire pressure",
+desc:"Council unity increases diplomatic pressure for a ceasefire.",
+likelihood:"Medium"
+},
+{
+title:"Symbolic consensus",
+desc:"Adoption signals Council engagement despite geopolitical division.",
+likelihood:"Medium"
+}
+],
+justification:"China and Russia said the draft lacked a clear demand for ceasefire.",
+draftSummary:"Resolution addressing Gaza conflict following October 7 attacks."
+},
+
+{
+id:8,
+date:"2023-12-08",
+topic:"Gaza ceasefire draft",
+vetoedBy:["United States"],
+impactScore:9,
+category:"Ceasefire",
+draftSymbol:"S/2023/970",
+meetingRecord:"S/PV.9499",
+draftLink:"https://undocs.org/S/2023/970",
+recordLink:"https://undocs.org/S/PV.9499",
+whatHappened:"The US vetoed a resolution demanding an immediate humanitarian ceasefire in Gaza.",
+altTimelines:[
+{
+title:"Humanitarian reprieve",
+desc:"Earlier ceasefire mitigates civilian casualties and infrastructure damage.",
+likelihood:"Medium"
+},
+{
+title:"Legal benchmark",
+desc:"Resolution becomes legal reference for later accountability debates.",
+likelihood:"Medium"
+}
+],
+justification:"The US argued the text could undermine ongoing hostage negotiations.",
+draftSummary:"Demand an immediate humanitarian ceasefire in Gaza."
+},
+
+{
+id:9,
+date:"2023-12-22",
+topic:"Gaza amendment veto",
+vetoedBy:["United States"],
+impactScore:7,
+category:"Ceasefire",
+draftSymbol:"S/2023/1029",
+meetingRecord:"S/PV.9520",
+draftLink:"https://undocs.org/S/2023/1029",
+recordLink:"https://undocs.org/S/PV.9520",
+whatHappened:"The US vetoed an amendment strengthening ceasefire language in a Gaza resolution.",
+altTimelines:[
+{
+title:"Stronger ceasefire language",
+desc:"Council adopts clearer ceasefire language shaping diplomatic negotiations.",
+likelihood:"Medium"
+},
+{
+title:"Norm reinforcement",
+desc:"Security Council reinforces expectation of humanitarian ceasefires.",
+likelihood:"Medium"
+}
+],
+justification:"The US argued stronger language risked derailing negotiations.",
+draftSummary:"Amendment strengthening ceasefire provisions in Gaza resolution."
+},
+
+{
+id:10,
+date:"2024-02-20",
+topic:"Gaza ceasefire draft",
+vetoedBy:["United States"],
+impactScore:9,
+category:"Ceasefire",
+draftSymbol:"S/2024/173",
+meetingRecord:"S/PV.9552",
+draftLink:"https://undocs.org/S/2024/173",
+recordLink:"https://undocs.org/S/PV.9552",
+whatHappened:"The United States vetoed a resolution calling for an immediate ceasefire in Gaza.",
+altTimelines:[
+{
+title:"Immediate ceasefire",
+desc:"Council demand pressures parties toward temporary ceasefire negotiations.",
+likelihood:"Medium"
+},
+{
+title:"Diplomatic realignment",
+desc:"US support for ceasefire language reshapes global diplomatic dynamics.",
+likelihood:"Low"
+}
+],
+justification:"The US argued the resolution would interfere with ongoing hostage negotiations.",
+draftSummary:"Demand an immediate humanitarian ceasefire in Gaza."
+},
+
+{
+id:11,
+date:"2024-03-22",
+topic:"Gaza ceasefire (US draft)",
+vetoedBy:["China","Russia"],
+impactScore:8,
+category:"Ceasefire",
+draftSymbol:"S/2024/239",
+meetingRecord:"S/PV.9584",
+draftLink:"https://undocs.org/S/2024/239",
+recordLink:"https://undocs.org/S/PV.9584",
+whatHappened:"China and Russia vetoed a US-drafted resolution on Gaza ceasefire conditions.",
+altTimelines:[
+{
+title:"US policy shift",
+desc:"Adoption signals shift in US diplomacy toward stronger ceasefire pressure.",
+likelihood:"Medium"
+},
+{
+title:"Negotiation framework",
+desc:"Resolution provides diplomatic structure for ceasefire talks.",
+likelihood:"Medium"
+}
+],
+justification:"China and Russia argued the text did not demand an immediate ceasefire.",
+draftSummary:"US-drafted resolution addressing ceasefire and humanitarian access."
+},
+
+{
+id:12,
+date:"2024-03-28",
+topic:"DPRK sanctions panel",
+vetoedBy:["Russia"],
+impactScore:7,
+category:"Non-Proliferation",
+draftSymbol:"S/2024/255",
+meetingRecord:"S/PV.9591",
+draftLink:"https://undocs.org/S/2024/255",
+recordLink:"https://undocs.org/S/PV.9591",
+whatHappened:"Russia vetoed renewal of the DPRK sanctions monitoring panel.",
+altTimelines:[
+{
+title:"Oversight preserved",
+desc:"Monitoring continues documenting sanctions violations.",
+likelihood:"High"
+},
+{
+title:"Evidence trail",
+desc:"Reports strengthen future non-proliferation enforcement.",
+likelihood:"Medium"
+}
+],
+justification:"Russia argued the panel had become politicized.",
+draftSummary:"Renew the DPRK sanctions Panel of Experts."
+},
+
+{
+id:13,
+date:"2024-04-18",
+topic:"Palestine membership",
+vetoedBy:["United States"],
+impactScore:9,
+category:"Statehood",
+draftSymbol:"S/2024/312",
+meetingRecord:"S/PV.9609",
+draftLink:"https://undocs.org/S/2024/312",
+recordLink:"https://undocs.org/S/PV.9609",
+whatHappened:"The US vetoed a resolution recommending full UN membership for Palestine.",
+altTimelines:[
+{
+title:"Full statehood",
+desc:"Palestine gains full UN membership and expanded legal standing.",
+likelihood:"Medium"
+},
+{
+title:"Negotiation reset",
+desc:"Diplomacy shifts as Palestine negotiates as recognized state.",
+likelihood:"Low"
+}
+],
+justification:"The US argued statehood should result from negotiations with Israel.",
+draftSummary:"Recommend Palestine for full UN membership."
+},
+
+{
+id:14,
+date:"2024-04-24",
+topic:"Space weapons resolution",
+vetoedBy:["Russia"],
+impactScore:5,
+category:"Non-Proliferation",
+draftSymbol:"S/2024/302",
+meetingRecord:"S/PV.9616",
+draftLink:"https://undocs.org/S/2024/302",
+recordLink:"https://undocs.org/S/PV.9616",
+whatHappened:"Russia vetoed a draft addressing weapons in outer space.",
+altTimelines:[
+{
+title:"Norm reinforcement",
+desc:"Resolution reaffirms international commitment to keeping space weapons-free.",
+likelihood:"Medium"
+},
+{
+title:"Treaty momentum",
+desc:"Adoption accelerates negotiations on a new space arms treaty.",
+likelihood:"Low"
+}
+],
+justification:"Russia argued the resolution ignored its broader space arms proposals.",
+draftSummary:"Address threats of weapons deployment in outer space."
+},
+
+{
+id:15,
+date:"2024-11-18",
+topic:"Sudan sanctions monitoring",
+vetoedBy:["Russia"],
+impactScore:7,
+category:"Sanctions",
+draftSymbol:"S/2024/826",
+meetingRecord:"S/PV.9786",
+draftLink:"https://undocs.org/S/2024/826",
+recordLink:"https://undocs.org/S/PV.9786",
+whatHappened:"Russia vetoed a draft resolution concerning Sudan sanctions monitoring.",
+altTimelines:[
+{
+title:"Enhanced monitoring",
+desc:"Panel oversight strengthens accountability for actors in Sudan's conflict.",
+likelihood:"Medium"
+},
+{
+title:"Regional pressure",
+desc:"Council backing strengthens mediation leverage in Sudan.",
+likelihood:"Low"
+}
+],
+justification:"Russia argued the text was politically unbalanced.",
+draftSummary:"Address monitoring mechanisms related to Sudan conflict."
+},
+
+{
+id:16,
+date:"2024-11-20",
+topic:"Gaza ceasefire (E10 draft)",
+vetoedBy:["United States"],
+impactScore:8,
+category:"Ceasefire",
+draftSymbol:"S/2024/835",
+meetingRecord:"S/PV.9790",
+draftLink:"https://undocs.org/S/2024/835",
+recordLink:"https://undocs.org/S/PV.9790",
+whatHappened:"The United States vetoed a ceasefire resolution drafted by elected members.",
+altTimelines:[
+{
+title:"E10 breakthrough",
+desc:"Adoption signals greater influence for elected Council members.",
+likelihood:"Medium"
+},
+{
+title:"Reform momentum",
+desc:"Resolution strengthens calls for Security Council veto reform.",
+likelihood:"Low"
+}
+],
+justification:"The US argued the resolution failed to address hostage negotiations.",
+draftSummary:"Demand permanent ceasefire and humanitarian access in Gaza."
+},
+
+{
+id:17,
+date:"2025-02-24",
+topic:"Ukraine ceasefire proposal",
+vetoedBy:["Russia"],
+impactScore:7,
+category:"Ceasefire",
+draftSymbol:"S/2025/115",
+meetingRecord:"S/PV.9866",
+draftLink:"https://undocs.org/S/2025/115",
+recordLink:"https://undocs.org/S/PV.9866",
+whatHappened:"Russia vetoed a resolution addressing the Ukraine conflict.",
+altTimelines:[
+{
+title:"Negotiation pressure",
+desc:"Council unity pushes renewed negotiations between parties.",
+likelihood:"Low"
+},
+{
+title:"Diplomatic escalation",
+desc:"Adoption increases diplomatic pressure on Moscow.",
+likelihood:"Medium"
+}
+],
+justification:"Russia rejected the text as biased toward Ukraine.",
+draftSummary:"Address conflict escalation in Ukraine."
+},
+
+{
+id:18,
+date:"2025-06-04",
+topic:"Gaza ceasefire (2025)",
+vetoedBy:["United States"],
+impactScore:8,
+category:"Ceasefire",
+draftSymbol:"S/2025/353",
+meetingRecord:"S/PV.9929",
+draftLink:"https://undocs.org/S/2025/353",
+recordLink:"https://undocs.org/S/PV.9929",
+whatHappened:"The United States vetoed another Gaza ceasefire resolution.",
+altTimelines:[
+{
+title:"Humanitarian relief",
+desc:"Resolution creates diplomatic push toward sustained ceasefire.",
+likelihood:"Medium"
+},
+{
+title:"Norm preservation",
+desc:"Council demonstrates ability to act on Gaza crisis.",
+likelihood:"Medium"
+}
+],
+justification:"The US argued the resolution did not sufficiently address Israel’s security concerns.",
+draftSummary:"Demand ceasefire and humanitarian access in Gaza."
+},
+
+{
+id:19,
+date:"2025-09-18",
+topic:"Gaza ceasefire (2025)",
+vetoedBy:["United States"],
+impactScore:8,
+category:"Ceasefire",
+draftSymbol:"S/2025/583",
+meetingRecord:"S/PV.10000",
+draftLink:"https://undocs.org/S/2025/583",
+recordLink:"https://undocs.org/S/PV.10000",
+whatHappened:"The United States vetoed a Gaza ceasefire resolution during the Council’s 10,000th meeting.",
+altTimelines:[
+{
+title:"Historic ceasefire",
+desc:"Adoption during the symbolic meeting resets diplomatic momentum.",
+likelihood:"Medium"
+},
+{
+title:"Institutional credibility",
+desc:"Council action restores some legitimacy to multilateral diplomacy.",
+likelihood:"Low"
+}
+],
+justification:"The US maintained the resolution did not sufficiently address Hamas.",
+draftSummary:"Demand ceasefire and humanitarian access in Gaza."
+}
+
 ];
 
 const COLORS: Record<Country, string> = {
@@ -717,6 +920,27 @@ function SidePanel({
               >
                 {fmtLong(veto.date)}
               </span>
+
+                <span
+                  style={{
+                    fontSize: 8,
+                    fontFamily: "'JetBrains Mono'",
+                    color: "rgba(255,255,255,0.40)",
+                  }}
+                >
+                  {veto.draftSymbol}
+                </span>
+
+                <span
+                  style={{
+                    fontSize: 8,
+                    fontFamily: "'JetBrains Mono'",
+                    color: "rgba(255,255,255,0.40)",
+                  }}
+                >
+                  {veto.meetingRecord}
+                </span>
+
               {veto.vetoedBy.map((c) => (
                 <span
                   key={c}
@@ -817,7 +1041,7 @@ function SidePanel({
           </div>
         </div>
 
-        <div style={{ marginBottom: 16 }}>
+        <div style={{ marginBottom: 14 }}>
           <div
             style={{
               fontSize: 7,
@@ -850,6 +1074,123 @@ function SidePanel({
             </p>
           </div>
         </div>
+
+        <div style={{ marginBottom: 16 }}>
+  <div
+    style={{
+      fontSize: 7,
+      fontFamily: "'JetBrains Mono'",
+      letterSpacing: "0.1em",
+      color: "rgba(255,255,255,0.48)",
+      textTransform: "uppercase",
+      marginBottom: 6,
+    }}
+  >
+    Source documents
+  </div>
+
+<div
+  style={{
+    display: "flex",
+    gap: 8,
+    flexWrap: "wrap",
+  }}
+>
+  <a
+    href={veto.draftLink}
+    target="_blank"
+    rel="noreferrer"
+    style={{
+      display: "inline-flex",
+      alignItems: "center",
+      gap: 8,
+      padding: "8px 10px",
+      borderRadius: 999,
+      background: "rgba(255,255,255,0.03)",
+      border: "1px solid rgba(255,255,255,0.08)",
+      textDecoration: "none",
+      color: "inherit",
+    }}
+  >
+    <span
+      style={{
+        fontSize: 7,
+        fontFamily: "'JetBrains Mono'",
+        letterSpacing: "0.08em",
+        textTransform: "uppercase",
+        color: "rgba(255,255,255,0.42)",
+      }}
+    >
+      Draft
+    </span>
+    <span
+      style={{
+        fontSize: 11,
+        fontFamily: "'JetBrains Mono'",
+        color: "rgba(255,255,255,0.82)",
+      }}
+    >
+      {veto.draftSymbol}
+    </span>
+    <span
+      style={{
+        fontSize: 10,
+        fontFamily: "'JetBrains Mono'",
+        color: ALT,
+      }}
+    >
+      ↗
+    </span>
+  </a>
+
+  <a
+    href={veto.recordLink}
+    target="_blank"
+    rel="noreferrer"
+    style={{
+      display: "inline-flex",
+      alignItems: "center",
+      gap: 8,
+      padding: "8px 10px",
+      borderRadius: 999,
+      background: "rgba(255,255,255,0.03)",
+      border: "1px solid rgba(255,255,255,0.08)",
+      textDecoration: "none",
+      color: "inherit",
+    }}
+  >
+    <span
+      style={{
+        fontSize: 7,
+        fontFamily: "'JetBrains Mono'",
+        letterSpacing: "0.08em",
+        textTransform: "uppercase",
+        color: "rgba(255,255,255,0.42)",
+      }}
+    >
+      Record
+    </span>
+    <span
+      style={{
+        fontSize: 11,
+        fontFamily: "'JetBrains Mono'",
+        color: "rgba(255,255,255,0.82)",
+      }}
+    >
+      {veto.meetingRecord}
+    </span>
+    <span
+      style={{
+        fontSize: 10,
+        fontFamily: "'JetBrains Mono'",
+        color: ALT,
+      }}
+    >
+      ↗
+    </span>
+  </a>
+</div>
+</div>
 
         <div
           style={{
